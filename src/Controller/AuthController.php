@@ -64,6 +64,15 @@ class AuthController extends Controller
 
                 return $this->redirectToRoute("landing_default");
 
+//                return new Response(json_encode([
+//                    'status' => 'success',
+//                    'message' => 'Authentification réussie',
+//                    'token' => $token,
+//                    'user' => [
+//                        'id' => $user->getId(),
+//                        'email' => $user->getEmail()
+//                    ]
+//                ]), 200, ['Content-Type' => 'application/json']);
 
             }
 
