@@ -11,6 +11,17 @@ use Core\Repository\Repository;
 class UserRepository extends Repository
 {
 
+    public function findByEmail(string $email): ?User
+    {
+        $query = $this->pdo->prepare("SELECT email FROM $this->tableName WHERE email = :email");
+        $query->execute([
+            "email"=> $email
+        ]);
+        $query->setFetchMode(\PDO::FETCH_CLASS, $this->targetEntity);
+        $email = $query->fetch();
+        return $email;
+    }
+
     public function save(User $user): int
     {
         $this->pdo->prepare("INSERT INTO $this->tableName (email, password) VALUES (:email, :password)")
@@ -21,5 +32,7 @@ class UserRepository extends Repository
 
         return $this->pdo->lastInsertId();
     }
+
+
 
 }
