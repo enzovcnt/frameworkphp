@@ -24,8 +24,11 @@ class RegistrationController extends Controller
             $user = new User();
             $user->setEmail($registrationForm->getValue("email"));
             $user->setPassword($registrationForm->getValue("password"));
+
+            $emailAlreadyUse =
+
             $user = $this->getRepository()->save($user);
-            return $this->redirectToRoute("");
+            return $this->redirectToRoute("home");
 
 
         }
