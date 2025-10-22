@@ -9,9 +9,9 @@ class JWTService
 
     private string $secret;
 
-    public function __construct(string $secret)
+    public function __construct(?string $secret = null)
     {
-        $this->secret = $_ENV['JWT_SECRET'];
+        $this->secret = $secret ?? $_ENV['JWT_SECRET'];
     }
 
 

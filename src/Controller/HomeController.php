@@ -10,7 +10,7 @@ class HomeController extends Controller
 
 
 
-    #[Route(uri:'/', routeName: 'home')]
+
     public function index()
     {
        return $this->render('home/documentation', []);

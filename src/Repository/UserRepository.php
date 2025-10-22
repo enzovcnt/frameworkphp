@@ -13,13 +13,13 @@ class UserRepository extends Repository
 
     public function findByEmail(string $email): ?User
     {
-        $query = $this->pdo->prepare("SELECT email FROM $this->tableName WHERE email = :email");
+        $query = $this->pdo->prepare("SELECT * FROM $this->tableName WHERE email = :email");
         $query->execute([
             "email"=> $email
         ]);
         $query->setFetchMode(\PDO::FETCH_CLASS, $this->targetEntity);
-        $email = $query->fetch();
-        return $email;
+        $user = $query->fetch();
+        return $user;
     }
 
     public function save(User $user): int
