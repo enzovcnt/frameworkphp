@@ -30,6 +30,15 @@ use Core\Session\Session;
                 <li class="nav-item">
                     <a class="nav-link" href="/post/new">New Post</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
 
 
 

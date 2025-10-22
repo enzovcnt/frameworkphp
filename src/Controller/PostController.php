@@ -76,6 +76,8 @@ class PostController extends Controller
     #[Route(uri: "/post/update", routeName: "editPost")]
 public function update():Response
 {
+    $payload = $this->jwtVerif->checkToken();
+    var_dump($payload);
 
         $id = $this->getRequest()->get(["id"=>"number"]);
 
@@ -109,6 +111,9 @@ public function update():Response
 #[Route(uri: "/post/delete", routeName: "deletePost")]
 public function delete():Response
 {
+    $payload = $this->jwtVerif->checkToken();
+    var_dump($payload);
+
     $id = $this->getRequest()->get(["id"=>"number"]);
     if(!$id){return $this->redirectToRoute("posts");}
     $post = $this->getRepository()->find($id);
