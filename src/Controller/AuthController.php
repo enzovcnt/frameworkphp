@@ -63,6 +63,8 @@ class AuthController extends Controller
 
 
                 return $this->redirectToRoute("landing_default");
+
+
             }
 
 
@@ -78,7 +80,16 @@ class AuthController extends Controller
     public function logout(): Response
     {
 
-        return $this->redirectToRoute("auth");
+        setcookie('jwt_token', '', [
+            'expires' => time() - 3600, //supprime en mettant une date passée
+            'path' => '/',
+            //'domain' => '127.0.0.1',
+            'secure' => false,
+            'httponly' => true,
+            'samesite' => 'strict',
+        ]);
+
+        return $this->redirectToRoute("login");
     }
 
 }

@@ -8,12 +8,19 @@ use Attributes\DefaultEntity;
 use Core\Attributes\Route;
 use Core\Controller\Controller;
 use Core\Http\Response;
-
+use Core\Service\JWTVerifService;
 
 
 #[DefaultEntity(entityName: Post::class)]
 class PostController extends Controller
 {
+    private JWTVerifService $jwtVerif;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->jwtVerif = new JWTVerifService('JWT_SECRET');
+    }
 
     #[Route(uri:'/posts', routeName: 'posts')]
     public function index():Response
@@ -44,6 +51,8 @@ class PostController extends Controller
     #[Route(uri: "/post/new", routeName: "newPost")]
     public function create():Response
     {
+        $payload = $this->jwtVerif->checkToken();
+        var_dump($payload);
 
         $postForm = new PostType();
         if($postForm->isSubmitted()){
