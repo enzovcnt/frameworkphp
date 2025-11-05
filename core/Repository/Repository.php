@@ -77,7 +77,9 @@ abstract class Repository
     public function find(int $id) : object | bool
     {
 
-        $query = $this->pdo->prepare("SELECT * FROM $this->tableName WHERE id = :id");
+        $columnName = $this->resolveColumnsList();
+        $column = implode(", ", $columnName);
+        $query = $this->pdo->prepare("SELECT $column FROM $this->tableName WHERE id = :id");
         $query->execute([
             "id"=> $id
         ]);
