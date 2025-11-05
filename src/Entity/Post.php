@@ -6,6 +6,7 @@ namespace App\Entity;
 use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
 use Attributes\TargetRepository;
+use Core\Attributes\Column;
 use Core\Attributes\Table;
 
 #[Table(name: 'posts')]
@@ -13,13 +14,17 @@ use Core\Attributes\Table;
 class Post
 {
 
+
+    #[Column(columnName: 'id', columnNullable: false)]
     private int $id;
+    #[Column(columnName: 'title', columnLength: 255, columnNullable: false)]
     private string $title;
+    #[Column(columnName: 'content',columnType: 'text', columnNullable: false)]
     private string $content;
 
 
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
