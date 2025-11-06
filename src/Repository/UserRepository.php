@@ -22,16 +22,16 @@ class UserRepository extends Repository
         return $user;
     }
 
-    public function save(User $user): int
-    {
-        $this->pdo->prepare("INSERT INTO $this->tableName (email, password) VALUES (:email, :password)")
-            ->execute([
-                'email' => $user->getEmail(),
-                'password' => $user->getPassword(),
-            ]);
-
-        return $this->pdo->lastInsertId();
-    }
+//    public function save(User $user): int
+//    {
+//        $this->pdo->prepare("INSERT INTO $this->tableName (email, password) VALUES (:email, :password)")
+//            ->execute([
+//                'email' => $user->getEmail(),
+//                'password' => $user->getPassword(),
+//            ]);
+//
+//        return $this->pdo->lastInsertId();
+//    }
 
 
 
